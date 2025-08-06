@@ -2,8 +2,14 @@ import UIKit
 
 final class MovieQuizViewController: UIViewController {
     // MARK: - Lifecycle
+    @IBOutlet weak var yesButton: UIButton!
+    @IBOutlet weak var noButton: UIButton!
+    @IBOutlet weak var questionTitleLable: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        noButton.titleLabel?.font = UIFont(name: "YSDisplay-Medium", size: 20)
+        yesButton.titleLabel?.font = UIFont(name: "YSDisplay-Medium", size: 20)
+        questionTitleLable.font = UIFont(name: "YSDisplay-Medium", size: 20)
     }
 }
 
