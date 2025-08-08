@@ -123,8 +123,8 @@ final class MovieQuizViewController: UIViewController {
         }
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 8
-        imageView.layer.borderColor = isCorrect ? UIColor.green.cgColor :
-        UIColor.red.cgColor
+        imageView.layer.borderColor = isCorrect ? UIColor.ypGreen.cgColor :
+        UIColor.ypRed.cgColor
     
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
