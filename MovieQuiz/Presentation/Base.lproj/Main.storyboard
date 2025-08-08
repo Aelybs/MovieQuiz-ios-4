@@ -43,6 +43,11 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="a3p-aZ-6It" secondAttribute="height" multiplier="2:3" id="pIA-xL-YDe"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Рейтинг этого фильма меньше, чем 5?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKG-f2-5Ai" userLabel="Question Label">
                                         <rect key="frame" x="0.0" y="625" width="374" height="17"/>
@@ -69,6 +74,9 @@
                                                         <integer key="value" value="15"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="noButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UPF-gq-KrP"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fK4-qd-OVt" userLabel="Yes Button">
                                                 <rect key="frame" x="197" y="0.0" width="177" height="60"/>
@@ -83,12 +91,13 @@
                                                         <integer key="value" value="15"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="yesButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lXY-c0-mUn"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="fK4-qd-OVt" firstAttribute="height" secondItem="eAc-MG-9Wr" secondAttribute="height" id="2wQ-U3-xmb"/>
                                             <constraint firstAttribute="height" constant="60" id="MOu-Mh-8bi"/>
-                                            <constraint firstItem="fK4-qd-OVt" firstAttribute="width" secondItem="eAc-MG-9Wr" secondAttribute="width" id="MTV-re-UlJ"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -104,6 +113,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="imageView" destination="a3p-aZ-6It" id="mAe-Lg-Epp"/>
                         <outlet property="indexLabel" destination="nFI-xr-p9i" id="OTk-3c-FE1"/>
                         <outlet property="noButton" destination="eAc-MG-9Wr" id="z1S-ak-kp5"/>
                         <outlet property="questionLabel" destination="iKG-f2-5Ai" id="zVE-H1-Zvv"/>
