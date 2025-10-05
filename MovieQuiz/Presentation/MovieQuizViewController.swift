@@ -15,13 +15,18 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     private var questionFactory: QuestionFactoryProtocol?
     private var currentQuestion: QuizQuestion?
     private var currentQuestionIndex = 0
-    private var correctAnswer = 0
+    private var correctAnswer: Int = 0
     
+  
+
+ 
+    private var statisticService =  StatisticService()
     struct viewModel {
         let image: UIImage
         let question: String
         let questionNumber: String
     }
+ 
     
     private func show(quiz result: QuizResultViewModel) {
         let model = AlertModel(title: result.title, message: result.text, buttonText: result.buttonText) { [weak self] in
@@ -44,9 +49,14 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         indexLabel.text = step.questionNumber
     }
     private func showNextQuestionOrResults() {
+      
         if currentQuestionIndex == questionsAmount - 1 {
+            statisticService.store(correct: correctAnswer, total: questionsAmount)
+            statisticService.gamesCount += 1
             let text = correctAnswer == questionsAmount ? "Поздравляем, ваш результат 10 из 10!" : "Ваш результат: \(correctAnswer)/10"
-            let viewModel = QuizResultViewModel(title: "Этот раунд окончен!", text: text, buttonText: "Сыграть еще раз")
+            let record = "\n Рекорд:  \(statisticService.bestGame.correct)/10 (\(statisticService.bestGame.date))"
+            let accuracy = "\n Средняя точность: \(String(format: "%.2f", statisticService.totalAccuracy))%"
+            let viewModel = QuizResultViewModel(title: "Этот раунд окончен!", text: text + "\n Количество сыгранных квизов: \(statisticService.gamesCount) " + record + accuracy ,  buttonText: "Сыграть еще раз")
             imageView.layer.borderWidth = 0
             show(quiz: viewModel)
         } else {
