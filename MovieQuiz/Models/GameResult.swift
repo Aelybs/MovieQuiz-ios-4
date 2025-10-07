@@ -4,7 +4,7 @@ struct GameResult {
     var total: Int
     var date: Date
     
-    func isBetter(_ another: GameResult) {
+    func isBetter(_ another: GameResult) -> Bool {
         correct > another.correct
     }
 }

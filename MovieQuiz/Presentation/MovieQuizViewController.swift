@@ -7,10 +7,10 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     @IBOutlet private var questionLabel: UILabel!
     @IBOutlet private var yesButton: UIButton!
     @IBOutlet private var noButton: UIButton!
-    @IBOutlet private var questionTitleLable: UILabel!
-    
+    @IBOutlet private var questionTitleLabel: UILabel!
+    private var resultPresenter: ResultPresenter!
     private var statisticService: StatisticServiceProtocol =  StatisticService()
-    private var alertPresenter = AlertPresenter()
+    private let alertPresenter = AlertPresenter()
     private let questionsAmount: Int = 10
     private var questionFactory: QuestionFactoryProtocol?
     private var currentQuestion: QuizQuestion?
@@ -49,7 +49,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         questionLabel.text = step.question
         indexLabel.text = step.questionNumber
     }
-    private func showNextQuestionOrResults() {
+    /*private func showNextQuestionOrResults() {
         if currentQuestionIndex == questionsAmount - 1 {
             statisticService.gamesCount += 1
             statisticService.store(correct: correctAnswer, total: questionsAmount)
@@ -59,6 +59,20 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
             let record = "\nВаш рекорд: \(statisticService.bestGame.correct)/\(questionsAmount) (\(statisticService.bestGame.date.dateTimeString))"
             let accuracy = "\nСредняя точность: \(String(format: "%.2f", statisticService.totalAccuracy))%"
             let viewModel = QuizResultViewModel(title: "Этот раунд окончен!", text: text + playedTimes + record + accuracy, buttonText: "Сыграть еще раз")
+            imageView.layer.borderWidth = 0
+            show(quiz: viewModel)
+        } else {
+            imageView.layer.borderWidth = 0
+            currentQuestionIndex += 1
+            questionFactory?.requestNextQuestion()
+        }
+    }*/
+    private func showNextQuestionOrResults() {
+        if currentQuestionIndex == questionsAmount - 1 {
+            statisticService.gamesCount += 1
+            statisticService.store(correct: correctAnswer, total: questionsAmount)
+
+            let viewModel = resultPresenter.makeResultViewModel(correctAnswers: correctAnswer)
             imageView.layer.borderWidth = 0
             show(quiz: viewModel)
         } else {
@@ -109,14 +123,15 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         noButton.titleLabel?.font = UIFont(name: "YSDisplay-Medium", size: 20)
         yesButton.titleLabel?.font = UIFont(name: "YSDisplay-Medium", size: 20)
         indexLabel.font = UIFont(name: "YSDisplay-Medium", size: 20)
-        questionTitleLable.font = UIFont(name: "YSDisplay-Medium", size: 20)
+        questionTitleLabel.font = UIFont(name: "YSDisplay-Medium", size: 20)
         questionLabel.font = UIFont(name: "YSDisplay-Bold", size: 23)
         questionLabel.textAlignment = .center
         questionLabel.numberOfLines = 2
         let questionFactory = QuestionFactory()
         questionFactory.delegate = self
         self.questionFactory = questionFactory
-        
+        resultPresenter = ResultPresenter(statisticService: statisticService, questionsAmount: questionsAmount)
+
         questionFactory.requestNextQuestion()
     }
 }

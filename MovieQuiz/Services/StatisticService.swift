@@ -51,7 +51,8 @@ extension StatisticService: StatisticServiceProtocol {
     
     var gamesCount: Int {
         get {
-            storage.integer(forKey: Keys.gamesCount.rawValue)
+            let gamesCount = storage.integer(forKey: Keys.gamesCount.rawValue)
+            return gamesCount
         }
         set {
             storage.set(newValue, forKey: Keys.gamesCount.rawValue)
@@ -62,11 +63,10 @@ extension StatisticService: StatisticServiceProtocol {
         totalQuestionsAsked += amount
         totalCorrectAnswers += count
         
-        func isBetter(bestGame: GameResult) {
-            if gamesCount == 0 || bestGame.correct <= count {
-                self.bestGame = GameResult(correct: count, total: amount, date: Date())
-            }
-            
+        let newGame = GameResult(correct: count, total: amount, date: Date())
+        if newGame.isBetter(bestGame)  {
+            bestGame = newGame
         }
     }
 }
+

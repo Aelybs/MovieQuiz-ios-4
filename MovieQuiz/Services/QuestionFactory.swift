@@ -1,5 +1,5 @@
 import Foundation
-class QuestionFactory: QuestionFactoryProtocol {
+final class QuestionFactory: QuestionFactoryProtocol {
     private let questions: [QuizQuestion] = [
         QuizQuestion(
             image: "The Godfather",
@@ -47,11 +47,16 @@ class QuestionFactory: QuestionFactoryProtocol {
         self.delegate = delegate
     }
     
-
+    private var unusedIndexes: Set<Int> = []
 func requestNextQuestion() {
-   guard let index = (0..<questions.count).randomElement() else { delegate?.didReceiveNextQuestion(question: nil)
+    if unusedIndexes.isEmpty {
+        unusedIndexes = Set(0..<questions.count)
+    }
+    
+   guard let index = unusedIndexes.randomElement() else { delegate?.didReceiveNextQuestion(question: nil)
       return
 }
+    unusedIndexes.remove(index)
     let question = questions[safe: index]
   delegate?.didReceiveNextQuestion(question: question)
 }
