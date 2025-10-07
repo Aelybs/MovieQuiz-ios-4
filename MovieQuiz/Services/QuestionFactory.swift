@@ -1,10 +1,3 @@
-//
-//  QuestionFactory.swift
-//  MovieQuiz
-//
-//  Created by Admin on 06.10.2025.
-//
-
 import Foundation
 class QuestionFactory: QuestionFactoryProtocol {
     private let questions: [QuizQuestion] = [
@@ -53,12 +46,14 @@ class QuestionFactory: QuestionFactoryProtocol {
     func setup(delegate: QuestionFactoryDelegate) {
         self.delegate = delegate
     }
-    func requestNextQuestion()  {
-        guard let index = (0..<questions.count).randomElement() else {
-            delegate?.didReceiveNextQuestion(question: nil)
-            return
-        }
-        let question = questions[safe: index]
-        delegate?.didReceiveNextQuestion(question: question)
-    }
+    
+
+func requestNextQuestion() {
+   guard let index = (0..<questions.count).randomElement() else { delegate?.didReceiveNextQuestion(question: nil)
+      return
+}
+    let question = questions[safe: index]
+  delegate?.didReceiveNextQuestion(question: question)
+}
+
 }

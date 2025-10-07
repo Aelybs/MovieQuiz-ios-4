@@ -1,10 +1,3 @@
-//
-//  AlertPresenter.swift
-//  MovieQuiz
-//
-//  Created by Admin on 06.10.2025.
-//
-
 import UIKit
 final class AlertPresenter {
     func show(in vc: UIViewController, model: AlertModel) {
