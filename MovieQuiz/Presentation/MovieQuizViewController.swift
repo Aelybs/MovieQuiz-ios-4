@@ -49,24 +49,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         questionLabel.text = step.question
         indexLabel.text = step.questionNumber
     }
-    /*private func showNextQuestionOrResults() {
-        if currentQuestionIndex == questionsAmount - 1 {
-            statisticService.gamesCount += 1
-            statisticService.store(correct: correctAnswer, total: questionsAmount)
-            statisticService.bestGame.isBetter(statisticService.bestGame)
-            let text = correctAnswer == questionsAmount ? "Поздравляем, вы ответили на 10 из 10!" : "Ваш результат: \(correctAnswer)/\(questionsAmount)"
-            let playedTimes = "\n Количество сыгранных квизов: \(statisticService.gamesCount)"
-            let record = "\nВаш рекорд: \(statisticService.bestGame.correct)/\(questionsAmount) (\(statisticService.bestGame.date.dateTimeString))"
-            let accuracy = "\nСредняя точность: \(String(format: "%.2f", statisticService.totalAccuracy))%"
-            let viewModel = QuizResultViewModel(title: "Этот раунд окончен!", text: text + playedTimes + record + accuracy, buttonText: "Сыграть еще раз")
-            imageView.layer.borderWidth = 0
-            show(quiz: viewModel)
-        } else {
-            imageView.layer.borderWidth = 0
-            currentQuestionIndex += 1
-            questionFactory?.requestNextQuestion()
-        }
-    }*/
+
     private func showNextQuestionOrResults() {
         if currentQuestionIndex == questionsAmount - 1 {
             statisticService.gamesCount += 1
