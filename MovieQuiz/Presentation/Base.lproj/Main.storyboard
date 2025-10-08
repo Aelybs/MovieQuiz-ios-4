@@ -37,7 +37,7 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a3p-aZ-6It" userLabel="Preview Image">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a3p-aZ-6It" userLabel="Preview Image" customClass="MovieQuizController">
                                         <rect key="frame" x="0.0" y="44" width="374" height="561"/>
                                         <color key="backgroundColor" name="YP White"/>
                                         <constraints>
@@ -117,7 +117,7 @@
                         <outlet property="indexLabel" destination="nFI-xr-p9i" id="OTk-3c-FE1"/>
                         <outlet property="noButton" destination="eAc-MG-9Wr" id="z1S-ak-kp5"/>
                         <outlet property="questionLabel" destination="iKG-f2-5Ai" id="zVE-H1-Zvv"/>
-                        <outlet property="questionTitleLable" destination="IBs-D8-nut" id="m9k-gp-0z7"/>
+                        <outlet property="questionTitleLabel" destination="IBs-D8-nut" id="HMd-Sv-aRU"/>
                         <outlet property="yesButton" destination="fK4-qd-OVt" id="py6-eZ-vyI"/>
                     </connections>
                 </viewController>
